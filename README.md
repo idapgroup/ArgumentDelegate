@@ -15,10 +15,8 @@ dependencies {
 Add `jcenter` to your root `build.gradle`
 
 ```groovy
-buildscript {
-  repositories {
-        jcenter()
-   }
+repositories {
+    jcenter()
 }
 ```
 
