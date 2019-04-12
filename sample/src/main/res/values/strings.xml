@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ArgumentDelegateExample</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="receiver_data_message"><![CDATA[You have passed <b>%s</b> as argument.]]></string>
+    <string name="receiver_no_data_message">You have not passed any data or have passed empty string.</string>
+</resources>
