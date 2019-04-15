@@ -36,7 +36,8 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation 'androidx.core:core-ktx:1.0.1'
 
-    implementation project(':argumentdelegate')
+    implementation project(':argument-delegate')
+//    implementation 'com.idapgroup:argument-delegate:1.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0-alpha03'

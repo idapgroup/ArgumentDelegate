@@ -1,1 +1,1 @@
-include ':sample', ':argumentdelegate'
+include ':sample', ':argument-delegate'

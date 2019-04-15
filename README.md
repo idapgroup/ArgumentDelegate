@@ -6,9 +6,11 @@ Property binding for Android Bundle arguments. Written for simple bundle unpacki
 Download
 --------
 
+[ ![latest-version](https://api.bintray.com/packages/idapgroup/argument-delegate/argument-delegate/images/download.svg?version=1.0.0) ](https://bintray.com/idapgroup/argument-delegate/argument-delegate/1.0.0/link)
+
 ```groovy
 dependencies {
-  implementation 'com.idapgroup:argument-delegate:1.0.0'
+  implementation 'com.idapgroup:argument-delegate:latest-version'
 }
 ```
 
