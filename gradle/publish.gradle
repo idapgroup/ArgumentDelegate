@@ -1,0 +1,95 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+ext {
+    bintrayRepo = 'argument-delegate'
+    bintrayName = 'argument-delegate'
+
+    publishedGroupId = 'com.idapgroup'
+    libraryName = 'argument-delegate'
+    artifact = 'argument-delegate'
+
+    libraryDescription = 'Property binding for Android Bundle arguments. Written for simple bundle unpacking for Kotlin users.'
+
+    siteUrl = 'https://github.com/idapgroup/ArgumentDelegate'
+    gitUrl = 'https://github.com/idapgroup/ArgumentDelegate.git'
+
+    libraryVersion = '1.0.0'
+
+
+    licenseName = 'BSD 3-Clause License'
+    licenseUrl = 'https://github.com/idapgroup/ArgumentDelegate/blob/master/LICENSE'
+    allLicenses = ["BSD 3-Clause"]
+
+}
+
+group = publishedGroupId
+version = libraryVersion
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            packaging 'aar'
+            groupId publishedGroupId
+            artifactId artifact
+
+            name libraryName
+            description libraryDescription
+            url siteUrl
+
+            licenses {
+                license {
+                    name licenseName
+                    url licenseUrl
+                }
+            }
+//            developers {
+//                developer {
+//                    id developerId
+//                    name developerName
+//                    email developerEmail
+//                }
+//            }
+            scm {
+                connection gitUrl
+                developerConnection gitUrl
+                url siteUrl
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = bintrayRepo
+        userOrg = 'idapgroup'
+        name = bintrayName
+        desc = libraryDescription
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = allLicenses
+        dryRun = false
+        publish = true
+        override = false
+        publicDownloadNumbers = true
+        version {
+            desc = libraryDescription
+        }
+    }
+}
