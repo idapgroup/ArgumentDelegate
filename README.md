@@ -8,19 +8,22 @@ Download
 
 [ ![latest-version](https://api.bintray.com/packages/idapgroup/argument-delegate/argument-delegate/images/download.svg?version=1.0.0) ](https://bintray.com/idapgroup/argument-delegate/argument-delegate/1.0.0/link)
 
+
+Add repository to your root `build.gradle`
+
+```groovy
+repositories {
+    maven { url 'https://dl.bintray.com/idapgroup/kotlin' }
+}
+```
+
+
 ```groovy
 dependencies {
   implementation 'com.idapgroup:argument-delegate:latest-version'
 }
 ```
 
-Add `jcenter` to your root `build.gradle`
-
-```groovy
-repositories {
-    jcenter()
-}
-```
 
 Usage sample
 -------------
