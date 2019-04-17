@@ -6,14 +6,13 @@ Property binding for Android Bundle arguments. Written for simple bundle unpacki
 Download
 --------
 
-[ ![latest-version](https://api.bintray.com/packages/idapgroup/argument-delegate/argument-delegate/images/download.svg?version=1.0.0) ](https://bintray.com/idapgroup/argument-delegate/argument-delegate/1.0.0/link)
-
+[ ![Download](https://api.bintray.com/packages/idapgroup/kotlin/argument-delegate/images/download.svg?version=1.0.0) ](https://bintray.com/idapgroup/kotlin/argument-delegate/1.0.0/link)
 
 Add repository to your root `build.gradle`
 
 ```groovy
 repositories {
-    maven { url 'https://dl.bintray.com/idapgroup/kotlin' }
+    jcenter()
 }
 ```
 
