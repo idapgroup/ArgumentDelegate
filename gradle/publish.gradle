@@ -2,7 +2,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 ext {
-    bintrayRepo = 'argument-delegate'
+    bintrayRepo = 'kotlin'
     bintrayName = 'argument-delegate'
 
     publishedGroupId = 'com.idapgroup'
