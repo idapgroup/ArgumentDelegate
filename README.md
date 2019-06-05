@@ -6,7 +6,7 @@ Property binding for Android Bundle arguments. Written for simple bundle unpacki
 Download
 --------
 
-[ ![Download](https://api.bintray.com/packages/idapgroup/kotlin/argument-delegate/images/download.svg?version=1.0.0) ](https://bintray.com/idapgroup/kotlin/argument-delegate/1.0.0/link)
+[ ![Download](https://api.bintray.com/packages/idapgroup/kotlin/argument-delegate/images/download.svg?version=1.0.1) ](https://bintray.com/idapgroup/kotlin/argument-delegate/1.0.1/link)
 
 Add repository to your root `build.gradle`
 

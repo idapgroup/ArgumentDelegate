@@ -22,8 +22,8 @@ inline fun <F, reified T> argumentDelegate(
 
         override operator fun getValue(thisRef: F, property: KProperty<*>): T {
             if (!initialized) {
-                value =
-                    getArgument(argumentWrapper(thisRef), property, T::class.java)
+                val bundle = argumentWrapper(thisRef)
+                value = getArgument<T>(bundle, property)
                 initialized = true
             }
             return value as T
@@ -32,20 +32,18 @@ inline fun <F, reified T> argumentDelegate(
 
 inline fun <reified T> getArgument(
     args: Bundle,
-    property: KProperty<*>,
-    clazz: Class<T>
-): T {
-    val value = args.get(property.name)
-    return when {
-        value == null -> {
+    property: KProperty<*>
+): T =
+    when (val value = args.get(property.name)) {
+        null -> {
             if (isNullable<T>()) {
                 null as T
             } else {
                 throw KotlinNullPointerException("${T::class.java} can't be cast to nullable type")
             }
         }
-        clazz.isAssignableFrom(value::class.java) -> value as T
+        is T -> value
         else -> throw RuntimeException("Property ${property.name} has a wrong type or can't be mapped")
     }
-}
+
 
