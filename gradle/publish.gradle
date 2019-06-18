@@ -2,23 +2,22 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 ext {
-    bintrayRepo = 'kotlin'
-    bintrayName = 'argument-delegate'
-
-    publishedGroupId = 'com.idapgroup'
     libraryName = 'argument-delegate'
-    artifact = 'argument-delegate'
+    publishedGroupId = 'com.idapgroup'
+    artifact = libraryName.toLowerCase()
+
+    bintrayRepo = 'kotlin'
+    bintrayName = libraryName
+    bintrayUserOrg = 'idapgroup'
 
     libraryDescription = 'Property binding for Android Bundle arguments. Written for simple bundle unpacking for Kotlin users.'
+    libraryVersion = '1.0.2'
 
-    siteUrl = 'https://github.com/idapgroup/ArgumentDelegate'
-    gitUrl = 'https://github.com/idapgroup/ArgumentDelegate.git'
-
-    libraryVersion = '1.0.0'
-
+    siteUrl = "https://github.com/idapgroup/$libraryName"
+    gitUrl = "${siteUrl}.git"
 
     licenseName = 'BSD 3-Clause License'
-    licenseUrl = 'https://github.com/idapgroup/ArgumentDelegate/blob/master/LICENSE'
+    licenseUrl = "$siteUrl/blob/master/LICENSE"
     allLicenses = ["BSD 3-Clause"]
 
 }
@@ -43,13 +42,6 @@ install {
                     url licenseUrl
                 }
             }
-//            developers {
-//                developer {
-//                    id developerId
-//                    name developerName
-//                    email developerEmail
-//                }
-//            }
             scm {
                 connection gitUrl
                 developerConnection gitUrl
@@ -78,7 +70,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = bintrayRepo
-        userOrg = 'idapgroup'
+        userOrg = bintrayUserOrg
         name = bintrayName
         desc = libraryDescription
         websiteUrl = siteUrl

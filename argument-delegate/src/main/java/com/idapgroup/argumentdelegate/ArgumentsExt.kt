@@ -2,7 +2,6 @@ package com.idapgroup.argumentdelegate
 
 import android.app.Activity
 import androidx.fragment.app.Fragment
-import kotlin.properties.ReadOnlyProperty
 
 /**
  * Extension function for android.app.Activity that simplify
@@ -11,7 +10,7 @@ import kotlin.properties.ReadOnlyProperty
  * Usage example:
  * val argument: Int by argumentsDelegate()
  */
-inline fun <reified T> Activity.argumentDelegate(): ReadOnlyProperty<Activity, T> {
+inline fun <reified T> Activity.argumentDelegate(): LazyProvider<Activity, T> {
     return argumentDelegate {
         it.intent?.extras ?: throw java.lang.RuntimeException("No arguments passed")
     }
@@ -24,7 +23,7 @@ inline fun <reified T> Activity.argumentDelegate(): ReadOnlyProperty<Activity, T
  * Usage example:
  * val argument: Int by argumentsDelegate()
  */
-inline fun <reified T> Fragment.argumentDelegate(): ReadOnlyProperty<Fragment, T> {
+inline fun <reified T> Fragment.argumentDelegate(): LazyProvider<Fragment, T> {
     return argumentDelegate {
         it.arguments ?: throw RuntimeException("No arguments passed")
     }

@@ -16,6 +16,7 @@ class ArgumentDelegateTest {
         val bundle = Bundle().apply {
             putString("argument", value)
             putString("nullArgument", null)
+            putString("wrongNull", null)
             putString("nullableWithValueArgument", value)
             putInt("intArg", 12)
         }
@@ -24,6 +25,7 @@ class ArgumentDelegateTest {
         assertEquals(argumentHolder.nullArgument, null)
         assertEquals(argumentHolder.nullableWithValueArgument, value)
         assertThrows<RuntimeException> { argumentHolder.intArg }
+        assertThrows<TypeCastException> { argumentHolder.wrongNull }
         assertThrows<RuntimeException> { argumentHolder.wrongArgument }
     }
 
@@ -36,6 +38,7 @@ class ArgumentHolder(
     private val wrapper = { a: ArgumentHolder -> a.bundle }
     val argument: String by argumentDelegate(wrapper)
     val nullArgument: String? by argumentDelegate(wrapper)
+    val wrongNull: String by argumentDelegate(wrapper)
     val nullableWithValueArgument: String? by argumentDelegate(wrapper)
     val wrongArgument: String by argumentDelegate(wrapper)
     val intArg: String by argumentDelegate(wrapper)

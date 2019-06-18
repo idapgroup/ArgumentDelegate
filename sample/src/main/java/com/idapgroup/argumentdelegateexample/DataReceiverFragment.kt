@@ -23,8 +23,6 @@ class DataReceiverFragment : Fragment() {
         inflater.inflate(R.layout.fragment_data_receiver, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        argumentDelegate<Int>()
-
         messageView.text =
                 if(data.isNullOrEmpty()) {
                     getString(R.string.receiver_no_data_message)
