@@ -11,7 +11,7 @@ ext {
     bintrayUserOrg = 'idapgroup'
 
     libraryDescription = 'Property binding for Android Bundle arguments. Written for simple bundle unpacking for Kotlin users.'
-    libraryVersion = '1.0.2'
+    libraryVersion = '1.0.3'
 
     siteUrl = "https://github.com/idapgroup/$libraryName"
     gitUrl = "${siteUrl}.git"

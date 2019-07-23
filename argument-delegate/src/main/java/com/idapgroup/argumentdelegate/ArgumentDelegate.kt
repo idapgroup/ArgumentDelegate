@@ -12,14 +12,14 @@ import kotlin.reflect.KProperty
  * val argument: Int by argumentsDelegate(wrapper)
  */
 inline fun <F, reified T> argumentDelegate(
-    crossinline provideArguments: (F) -> Bundle
+    crossinline provideArguments: (F) -> Bundle?
 ): LazyProvider<F, T> =
     object : LazyProvider<F, T> {
 
         override fun provideDelegate(thisRef: F, prop: KProperty<*>) =
             lazy {
                 val bundle = provideArguments(thisRef)
-                bundle[prop.name] as T
+                bundle?.get(prop.name) as T
             }
     }
 
