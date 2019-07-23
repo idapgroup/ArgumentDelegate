@@ -1,6 +1,7 @@
 package com.idapgroup.argumentdelegateexample
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,11 +19,13 @@ class DataReceiverFragment : Fragment() {
     }
 
     private val data: String? by argumentDelegate()
+    private val notProvidedData: String? by argumentDelegate()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_data_receiver, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.d("DataReceiverFragment", "$notProvidedData")
         messageView.text =
                 if(data.isNullOrEmpty()) {
                     getString(R.string.receiver_no_data_message)

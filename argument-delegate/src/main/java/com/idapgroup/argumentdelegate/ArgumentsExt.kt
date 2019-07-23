@@ -11,9 +11,7 @@ import androidx.fragment.app.Fragment
  * val argument: Int by argumentsDelegate()
  */
 inline fun <reified T> Activity.argumentDelegate(): LazyProvider<Activity, T> {
-    return argumentDelegate {
-        it.intent?.extras ?: throw java.lang.RuntimeException("No arguments passed")
-    }
+    return argumentDelegate { it.intent?.extras }
 }
 
 /**
@@ -24,8 +22,6 @@ inline fun <reified T> Activity.argumentDelegate(): LazyProvider<Activity, T> {
  * val argument: Int by argumentsDelegate()
  */
 inline fun <reified T> Fragment.argumentDelegate(): LazyProvider<Fragment, T> {
-    return argumentDelegate {
-        it.arguments ?: throw RuntimeException("No arguments passed")
-    }
+    return argumentDelegate { it.arguments }
 }
 
