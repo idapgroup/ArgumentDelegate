@@ -43,5 +43,4 @@ repositories {
     mavenCentral()
 }
 
-
-apply from: '../gradle/publish.gradle'
+apply from: "${rootDir}/publish/publish-project.gradle"

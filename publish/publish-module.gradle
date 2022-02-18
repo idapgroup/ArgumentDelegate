@@ -1,0 +1,86 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+ext {
+    libraryName = 'argument-delegate'
+    publishedGroupId = 'com.idapgroup'
+    artifact = libraryName.toLowerCase()
+
+    libraryDescription = 'Property binding for Android Bundle arguments. Written for simple bundle unpacking for Kotlin users.'
+    libraryVersion = '1.0.3'
+
+    siteUrl = "https://github.com/idapgroup/ArgumentDelegate"
+    gitUrl = "${siteUrl}.git"
+
+    licenseName = 'BSD 3-Clause License'
+    licenseUrl = "$siteUrl/blob/master/LICENSE"
+    allLicenses = ["BSD 3-Clause"]
+}
+
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+        from android.sourceSets.main.java.srcDirs
+        from android.sourceSets.main.kotlin.srcDirs
+    } else {
+        from sourceSets.main.java.srcDirs
+        from sourceSets.main.kotlin.srcDirs
+    }
+}
+artifacts {
+    archives androidSourcesJar
+}
+
+group = publishedGroupId
+version = libraryVersion
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId publishedGroupId
+                artifactId artifact
+                version libraryVersion
+
+                if (project.plugins.findPlugin("com.android.library")) {
+                    from components.release
+                } else {
+                    from components.java
+                }
+                artifact androidSourcesJar
+                pom {
+                    name = artifact
+                    description = libraryDescription
+                    url = siteUrl
+                    licenses {
+                        license {
+                            name = licenseName
+                            url = licenseUrl
+                        }
+                    }
+                    scm {
+                        connection = gitUrl
+                        developerConnection = gitUrl
+                        url = siteUrl
+                    }
+                    developers {
+                        developer {
+                            id = '123456'
+                            name = 'Eugene Kotsogub'
+                            email = 'admin@idapgroup.com'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+signing {
+    useInMemoryPgpKeys(
+            rootProject.ext["signing.keyId"],
+            rootProject.ext["signing.key"],
+            rootProject.ext["signing.password"],
+    )
+    sign publishing.publications
+}
